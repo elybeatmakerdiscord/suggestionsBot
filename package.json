@@ -1,0 +1,22 @@
+{
+  "name": "suggestionsbot",
+  "version": "1.0.0",
+  "description": "A bot to make sure messages in a channel contain both a youtube link and a timestamp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elybeatmakerdiscord/suggestionsBot.git"
+  },
+  "author": "Adryd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elybeatmakerdiscord/suggestionsBot/issues"
+  },
+  "homepage": "https://github.com/elybeatmakerdiscord/suggestionsBot#readme",
+  "dependencies": {
+    "eris": "^0.11.2"
+  }
+}
