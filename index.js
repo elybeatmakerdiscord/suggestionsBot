@@ -5,7 +5,9 @@ const Eris = require("eris");
 var bot = new Eris(config.botToken);
 bot.on("ready", () => {
     console.log("Ready");
-    bot.createMessage(config.logChannel, ":electric_plug: [Ready]")
+    if (config.debug === true) {
+        bot.createMessage(config.logChannel, ":electric_plug: [Ready]")
+    }
 });
 
 bot.on("messageCreate", (msg) => {
@@ -16,10 +18,10 @@ bot.on("messageCreate", (msg) => {
     }
     // Check if user is immune
     if (msg.member.roles.includes(config.immuneRole) || config.immuneUsers.includes(msg.member.id)) {
-        return 
+        return
     }
     // Filter to affected channels
-    if (!config.affectedChannels.includes(msg.channel.id)) { 
+    if (!config.affectedChannels.includes(msg.channel.id)) {
         return
     }
     // Check if message contains YouTube url
@@ -37,13 +39,13 @@ bot.on("messageCreate", (msg) => {
 
 });
 
-function failedMessage (reason, msg) {
+function failedMessage(reason, msg) {
     msg.delete(`suggestionsBot: Failed ${reason} check`)
     bot.createMessage(config.logChannel, `:speech_balloon: [Failed ${reason}] <@${msg.member.id}> tried to say \`${msg.cleanContent}\` in <#${msg.channel.id}>`)
-    
+
     let reasonString = ""
     switch (reason) {
-        case "link": 
+        case "link":
             reasonString = language.userErrors.failedLink
             break
         case "timestamp":
@@ -53,7 +55,7 @@ function failedMessage (reason, msg) {
 
     let tipString = ""
     if (language.tips.length > 0) {
-        let tipSelector = Math.floor(Math.random()*language.tips.length)
+        let tipSelector = Math.floor(Math.random() * language.tips.length)
         tipString = language.tips[tipSelector]
     }
 
